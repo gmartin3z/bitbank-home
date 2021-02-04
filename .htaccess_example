@@ -1,0 +1,13 @@
+# Disabling files indexation
+RewriteEngine On
+Options -Indexes
+
+# Setting main www index folder
+RewriteBase /www/route/of/bitbank
+
+# Redirect to 404 if requested page isn't index, images, css, css
+# or other resources of site
+RewriteCond %{REQUEST_URI} !(index\.php|\.css|\.js|\.png|\.jpg)$ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ 404.php?/$1 [L,QSA]
